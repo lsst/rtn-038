@@ -1,0 +1,9 @@
+% bibentry template for lsst.bib in https://github.com/lsst/lsst-texmf/blob/main/texmf/bibtex/bib/lsst.bib
+
+@DocuShare{RTN-038,
+   author = { Leanne Guy },
+    title = {Rubin Science Performance Metrics},
+     year = 2022,
+    month = May,
+   handle = {RTN-038},
+      url = {https://rtn-038.lsst.io } }
