@@ -10,14 +10,11 @@
 
    **This technote is a work-in-progress.**
 
-Abstract
-========
-
-The document provides the detailed mathematical definitions for all normative LSST science performance metrics 
-
 
 Introduction
 ============
+
+The document provides the detailed mathematical definitions for all normative LSST science performance metrics 
 
 The LSST Science Requirements Document defines a set of normative science performance metrics for the LSST, driven by the four science themes - studying the nature of dark matter and dark energy, exploring the dynamic and transient sky, mapping the Milky Way, and taking an inventory of the Solar System (add citation to overview paper).
 In this document, we present the detailed algorithms for all the normative science performance metrics defined in the SRD, LSR, OSS and DMSR.
