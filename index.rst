@@ -32,10 +32,11 @@ To add a new metric definition, copy and paste the template "<type> Metric X ".
 Image quality Metrics
 =====================
 
-This section gives the mathematical definitions for all defined image quality metrics 
+This section gives the mathematical definitions for all defined image quality metrics. 
 
 
---------------------------
+Ellipticity correlation
+-----------------------
 Name: TE12
 
 Specification:  The averaged E1, E2, and Ex residual PSF ellipticity correlations
@@ -50,7 +51,8 @@ Detailed Algorithm:
 Photometry Performance Metrics
 ==============================
 
-This section gives the mathematical definitions for all defined photometry performance metrics 
+This section gives the mathematical definitions for all defined photometry performance metrics. 
+
 
 Photometric Repeatabililty
 --------------------------
