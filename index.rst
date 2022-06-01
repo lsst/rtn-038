@@ -29,12 +29,6 @@ The document is organized into sections corresponding to the different types of 
 To add a new metric definition, copy and paste the template "<type> Metric X ". 
 
 
-Photometry Performance Metrics
-==============================
-
-This section gives the mathematical definitions for all defined photometry performance metrics 
-
-
 Image quality Metrics
 =====================
 
@@ -52,6 +46,11 @@ unit: none
 
 Detailed Algorithm:
 
+
+Photometry Performance Metrics
+==============================
+
+This section gives the mathematical definitions for all defined photometry performance metrics 
 
 Photometric Repeatabililty
 --------------------------
