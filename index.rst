@@ -88,17 +88,14 @@ Detailed Algorithm:
 
 
 
-Template
-========
-
-<type> Metrics
-==============
+<template> Metrics
+==================
 
 This section gives the mathematical definitions for all <science type> performance metrics 
 
 
-<type> Metric X1
-----------------
+<tempalate> Metric X1
+---------------------
 Name:
 
 Specification:
