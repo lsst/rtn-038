@@ -29,6 +29,67 @@ The document is organized into sections corresponding to the different types of 
 To add a new metric definition, copy and paste the template "<type> Metric X ". 
 
 
+Photometry Performance Metrics
+==============================
+
+This section gives the mathematical definitions for all defined photometry performance metrics 
+
+
+Image quality Metrics
+=====================
+
+This section gives the mathematical definitions for all defined image quality metrics 
+
+
+--------------------------
+Name: TE12
+
+Specification:  The averaged E1, E2, and Ex residual PSF ellipticity correlations
+
+Requirement Identifier(s): LPM-17, LSR, OSS, DMSR (DMS-REQ-0360)
+
+unit: none
+
+Detailed Algorithm:
+
+
+Photometric Repeatabililty
+--------------------------
+Name: PA1 
+
+Specification: The maximum rms of the unresolved source magnitude distribution around the median value.
+
+Requirement Identifier(s): LPM-17, LSR, OSS, DMSR (DMS-REQ-0359)
+
+unit: mmag
+
+Detailed Algorithm:
+
+
+Astrometry Performance Metrics
+==============================
+
+This section gives the mathematical definitions for all defined astrometry performance metrics 
+
+
+Astrometric ...
+--------------------------
+Name: AFX
+
+Specification: The maximum fraction of astrometric distances that deviate by more than AD1 milliarcsec
+
+Requirement Identifier(s): LPM-17, LSR, OSS, DMSR (DMS-REQ-0360)
+
+unit: percent
+
+Detailed Algorithm:
+
+
+
+
+Template
+========
+
 <type> Metrics
 ==============
 
@@ -45,17 +106,6 @@ Requirement Identifier(s) (with links):
 
 Detailed Algorithm:
 
-
-<type> Metric X2 
-----------------
-
-Name:
-
-Specification:
-
-Requirement Identifier(s) (with links):
-
-Detailed Algorithm:
 
 
 .. Make in-text citations with: :cite:`bibkey`.
