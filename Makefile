@@ -1,58 +1,48 @@
-# Makefile for Sphinx documentation
-#
+DOCTYPE = RTN
+DOCNUMBER = 038
+DOCNAME = $(DOCTYPE)-$(DOCNUMBER)
 
-# You can set these variables from the command line.
-SPHINXOPTS    = -n
-SPHINXBUILD   = sphinx-build
-PAPER         =
-BUILDDIR      = _build
+tex = $(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))
 
-# User-friendly check for sphinx-build
-ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
-$(error The '$(SPHINXBUILD)' command was not found. Try 'running pip install -r requirements.txt' to get the necessary Python dependencies.)
+GITVERSION := $(shell git log -1 --date=short --pretty=%h)
+GITDATE := $(shell git log -1 --date=short --pretty=%ad)
+GITSTATUS := $(shell git status --porcelain)
+ifneq "$(GITSTATUS)" ""
+	GITDIRTY = -dirty
 endif
 
-# Internal variables.
-PAPEROPT_a4     = -D latex_paper_size=a4
-PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
-# the i18n builder cannot share the environment and doctrees with the others
-I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+export TEXMFHOME ?= lsst-texmf/texmf
 
-.PHONY: help clean html epub changes linkcheck refresh-bib
+# Add aglossary.tex as a dependancy here if you want a glossary (and remove acronyms.tex)
+$(DOCNAME).pdf: $(tex) meta.tex local.bib acronyms.tex
+	latexmk -bibtex -xelatex -f $(DOCNAME)
+#	makeglossaries $(DOCNAME)
+#	xelatex $(DOCNAME)
+# For glossary uncomment the 2 lines above
 
-help:
-	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html         to make standalone HTML files"
-	@echo "  epub         to make an epub"
-	@echo "  linkcheck    to check all external links for integrity"
-	@echo "  refresh-bib  to update LSST bibliographies in lsstbib/"
 
+# Acronym tool allows for selection of acronyms based on tags - you may want more than DM
+acronyms.tex: $(tex) myacronyms.txt
+	$(TEXMFHOME)/../bin/generateAcronyms.py -t "DM" $(tex)
+
+# If you want a glossary you must manually run generateAcronyms.py  -gu to put the \gls in your files.
+aglossary.tex :$(tex) myacronyms.txt
+	generateAcronyms.py  -g $(tex)
+
+
+.PHONY: clean
 clean:
-	rm -rf $(BUILDDIR)/*
+	latexmk -c
+	rm -f $(DOCNAME).{bbl,glsdefs,pdf}
+	rm -f meta.tex
 
-html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+.FORCE:
 
-epub:
-	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) $(BUILDDIR)/epub
-	@echo
-	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
-
-changes:
-	$(SPHINXBUILD) -b changes $(ALLSPHINXOPTS) $(BUILDDIR)/changes
-	@echo
-	@echo "The overview file is in $(BUILDDIR)/changes."
-
-linkcheck:
-	$(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) $(BUILDDIR)/linkcheck
-	@echo
-	@echo "Link check complete; look for any errors in the above output " \
-	      "or in $(BUILDDIR)/linkcheck/output.txt."
-
-refresh-bib:
-	refresh-lsst-bib -d lsstbib
-	@echo
-	@echo "Commit the new bibliographies: git add lsstbib && git commit -m \"Update bibliographies.\""
+meta.tex: Makefile .FORCE
+	rm -f $@
+	touch $@
+	printf '%% GENERATED FILE -- edit this in the Makefile\n' >>$@
+	printf '\\newcommand{\\lsstDocType}{$(DOCTYPE)}\n' >>$@
+	printf '\\newcommand{\\lsstDocNum}{$(DOCNUMBER)}\n' >>$@
+	printf '\\newcommand{\\vcsRevision}{$(GITVERSION)$(GITDIRTY)}\n' >>$@
+	printf '\\newcommand{\\vcsDate}{$(GITDATE)}\n' >>$@
