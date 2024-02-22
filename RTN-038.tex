@@ -1,0 +1,74 @@
+\documentclass[OPS,authoryear,lsstdraft,toc]{lsstdoc}
+\input{meta}
+
+% Package imports go here.
+\usepackage{graphicx} 
+
+% Local commands go here.
+
+%If you want glossaries
+%\input{aglossary.tex}
+%\makeglossaries
+
+\title{Rubin Science Performance Metrics}
+
+% Optional subtitle
+% \setDocSubtitle{A subtitle}
+
+\author{%
+Leanne Guy, ....,  and the DM System Science Team
+}
+
+\setDocRef{RTN-038}
+\setDocUpstreamLocation{\url{https://github.com/lsst/rtn-038}}
+
+\date{\vcsDate}
+
+% Optional: name of the document's curator
+% \setDocCurator{The Curator of this Document}
+
+\setDocAbstract{%
+The document provides the detailed mathematical definitions for all Rubin/LSST science performance metrics. 
+It provides quantitative definitions for all the science performance metrics specified in the LSST Science Requirements document and derived documents as well as additional metrics defined as part of system development. 
+}
+
+% Change history defined here.
+% Order: oldest first.
+% Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
+% See LPM-51 for version number policy.
+\setDocChangeRecord{%
+  \addtohist{1}{2023-07-10}{First draft}{Leanne Guy}
+}
+
+\graphicspath{{figures/}} %Setting the graphicspath
+
+\begin{document}
+
+% Create the title page.
+\maketitle
+% Frequently for a technote we do not want a title page  uncomment this to remove the title page and changelog.
+% use \mkshorttitle to remove the extra pages
+
+% ADD CONTENT HERE
+\input{intro}
+\input{srd_metrics}
+\input{non_srd_metrics}
+
+\appendix
+
+% \input{AppendixExamples}
+
+% Include all the relevant bib files.
+% https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
+\section{References} \label{sec:bib}
+\renewcommand{\refname}{} % Suppress default Bibliography section
+\bibliography{local,lsst,lsst-dm,refs_ads,refs,books}
+
+% Make sure lsst-texmf/bin/generateAcronyms.py is in your path
+\section{Acronyms} \label{sec:acronyms}
+\input{acronyms.tex}
+% If you want glossary uncomment below -- comment out the two lines above
+%\printglossaries
+
+
+\end{document}
